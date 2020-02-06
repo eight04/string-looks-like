@@ -57,6 +57,11 @@ Related projects
 Changelog
 ---------
 
+* 0.1.1 (Feb 7, 2020)
+
+  - Add: return matched result.
+  - Fix: multiple placeholders.
+
 * 0.1.0 (Feb 7, 2020)
 
   - First release.
