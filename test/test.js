@@ -18,8 +18,18 @@ describe("looksLike", () => {
   });
   
   it("placeholders", () => {
-    looksLike("Hello world!", String.raw`Hello {{\w+}}!`);
-    looksLike("Hello world!", String.raw`Hello world{{\S}}`);
+    let result;
+    result = looksLike("Hello world!", String.raw`Hello {{\w+}}!`);
+    assert.equal(result[0], "world");
+    
+    result = looksLike("Hello world!", String.raw`Hello world{{\S}}`);
+    assert.equal(result[0], "!");
+    
+    result = looksLike("Hello world!", String.raw`{{\w+}} {{\w+(.)}}`);
+    assert.equal(result[0], "Hello");
+    assert.equal(result[1][0], "world!");
+    assert.equal(result[1][1], "!");
+    
     assert.throws(() => {
       looksLike("Hello world!", String.raw`Hello {{\d+}}!`);
     }, /Expect \\d\+/);

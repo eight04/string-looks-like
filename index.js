@@ -11,6 +11,7 @@ const matchers = [
 
 function looksLike(actual, expect) {
   let i = 0, j = 0;
+  const output = [];
   while (i < actual.length && j < expect.length) {
     let match;
     for (const test of matchers) {
@@ -18,12 +19,16 @@ function looksLike(actual, expect) {
       if (!match) continue;
       j = match.lastIndex;
       i = match.eat(actual, i);
+      if (match.output) {
+        output.push(match.output());
+      }
       break;
     }
     if (!match) {
       throw new Error(`no matcher found\n\n${drawFrame(expect, j)}`);
     }
   }
+  return output;
 }
 
 function drawFrame(s, index) {
@@ -69,19 +74,21 @@ function matchToken(input, index) {
 }
 
 function matchPlacehold(input, index) {
-  const rx = /\{\{([\s\S]+)\}\}/y;
+  const rx = /\{\{([\s\S]+?)\}\}/y;
   rx.lastIndex = index;
   const match = rx.exec(input);
   if (!match) {
     return;
   }
   const pattern = new RegExp(match[1].trim(), "y");
-  return {eat, lastIndex: rx.lastIndex};
+  let matchObj;
+  return {eat, lastIndex: rx.lastIndex, output: () => matchObj};
   
   function eat(s, index) {
     pattern.lastIndex = index;
     const match = pattern.exec(s);
     if (match) {
+      matchObj = 1 in match ? match : match[0];
       return pattern.lastIndex;
     }
     throw new AssertionError({

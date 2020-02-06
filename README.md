@@ -40,13 +40,13 @@ This module exports following members:
 ### looksLike
 
 ```js
-looksLike(actual: String, expect: String) => void
+looksLike(actual: String, expect: String) => Array<String | MatchObject>
 ```
 
 Test a string with a template and throw an `AssertionError` if not matched.
 
 * Whitespace in `expect` matches zero or more whitespaces.
-* A placeholder `{{}}` will be converted into regexp.
+* A placeholder `{{}}` will be converted into regexp. Matched string or the match object (with capture groups) will be stored in an array as the return value.
 * Compare character-by-character.
 
 Related projects
