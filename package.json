@@ -1,6 +1,6 @@
 {
   "name": "string-looks-like",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "An assert function that is used to compare multiline string. Support placeholders.",
   "author": "eight04 <eight04@gmail.com>",
   "license": "MIT",
