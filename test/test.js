@@ -22,6 +22,6 @@ describe("looksLike", () => {
     looksLike("Hello world!", String.raw`Hello world{{\S}}`);
     assert.throws(() => {
       looksLike("Hello world!", String.raw`Hello {{\d+}}!`);
-    }, /Expect \/\\d\+\//);
+    }, /Expect \\d\+/);
   });
 });
