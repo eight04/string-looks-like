@@ -7,6 +7,8 @@ string-looks-like
 
 An assert utility that is used to assert multiline string. Support placeholders.
 
+![screenshot](https://i.imgur.com/OAJXB3r.png)
+
 Installation
 ------------
 
@@ -55,6 +57,6 @@ Related projects
 Changelog
 ---------
 
-* 0.1.0 (Next)
+* 0.1.0 (Feb 7, 2020)
 
   - First release.
